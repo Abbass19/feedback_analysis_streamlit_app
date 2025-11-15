@@ -1,0 +1,4 @@
+pip~=25.2
+typing_extensions~=4.12.2
+protobuf~=6.31.1
+filelock~=3.17.0
