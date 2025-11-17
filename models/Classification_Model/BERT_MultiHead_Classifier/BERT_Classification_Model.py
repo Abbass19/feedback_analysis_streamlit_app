@@ -62,7 +62,10 @@ class MultiHeadClassifier(nn.Module):
     def __init__(self, bert_model_name="aubmindlab/bert-base-arabertv2", num_heads=5, num_classes=4, dropout_rate=0.3):
         super().__init__()
         # Compatible loading for Python 3.13.9
-        self.bert = AutoModel.from_pretrained(bert_model_name)
+        from transformers import AutoModel
+        self.bert = AutoModel.from_pretrained("aubmindlab/bert-base-arabertv2")
+
+
         hidden_size = self.bert.config.hidden_size
 
         # Enhanced architecture with dropout and hidden layers
