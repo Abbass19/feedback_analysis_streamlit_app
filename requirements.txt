@@ -1,4 +1,34 @@
-pip~=25.2
-typing_extensions~=4.12.2
-protobuf~=6.31.1
-filelock~=3.17.0
+typing_extensions~=4.15.0
+protobuf>=6.32.0
+filelock>=3.20.0
+psycopg2-binary>=2.9.11
+
+# Streamlit & UI
+streamlit==1.50.0
+plotly>=6.3.1
+pandas>=2.3.3
+
+# Audio / NLP
+torch>=2.8.0
+openai-whisper>=20250625
+sentence-transformers>=5.1.1
+spacy>=3.8.7
+thinc>=8.3.6
+aiortc>=1.14.0
+aioice>=0.10.1
+webrtcvad>=2.0.10
+pydub>=0.25.1
+soundfile>=0.13.1
+ffmpeg-python>=0.2.0
+
+# GLiNER
+gliner>=0.2.22
+transformers>=4.50.2
+
+# Database
+requests>=2.32.5
+
+# Utilities
+rich>=14.2.0
+tqdm>=4.67.1
+unicodedata2>=17.0.0
