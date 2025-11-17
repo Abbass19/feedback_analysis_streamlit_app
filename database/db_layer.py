@@ -1,6 +1,8 @@
 import psycopg2
 from psycopg2 import sql
 from typing import Optional, Dict, List, Any
+from datetime import datetime
+
 
 
 # Use your Railway DATABASE_URL
@@ -41,7 +43,8 @@ def db_add_record(feedback_text: str,
             location,
             quality_aspect,
             issue_type,
-            treatment_type
+            treatment_type,
+            created_at
         ) VALUES (
             %(feedback_text)s,
             %(sentiment_pricing)s,
@@ -60,7 +63,8 @@ def db_add_record(feedback_text: str,
             %(location)s,
             %(quality_aspect)s,
             %(issue_type)s,
-            %(treatment_type)s
+            %(treatment_type)s,
+            %(created_at)s
         )
     """)
 
@@ -76,7 +80,8 @@ def db_add_record(feedback_text: str,
             "doctor_name", "staff_role", "hospital_name", "department", "specialty",
             "service_area", "price", "time_expression", "location", "quality_aspect",
             "issue_type", "treatment_type"
-        ]}
+        ]},
+        "created_at": datetime.now()  # ← add this line
     }
 
     conn = get_connection()
