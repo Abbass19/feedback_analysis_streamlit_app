@@ -1,3 +1,7 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from database.app_api import api_add,api_query,api_df_from_records,api_sentiment_distribution,api_classification_distribution
 from database.db_layer import db_get_records
 
