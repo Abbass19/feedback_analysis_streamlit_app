@@ -285,7 +285,16 @@ def main():
                     if df_all.empty:
                         st.info("No data to download.")
                     else:
-                        st.markdown(download_link_for_df(df_all), unsafe_allow_html=True)
+                        # Convert DataFrame to CSV
+                        csv_data = df_all.to_csv(index=False).encode('utf-8')
+
+                        # Provide download button
+                        st.download_button(
+                            label="Download CSV",
+                            data=csv_data,
+                            file_name="feedback_data.csv",
+                            mime="text/csv"
+                        )
 
             with clear_col:
                 if st.button("Clear All"):
