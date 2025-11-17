@@ -14,7 +14,6 @@ import unicodedata
 import plotly.graph_objects as go
 from table import FeedbackTableFormatter
 import soundfile as sf
-import sounddevice as sd
 
 
 # -------------------------
