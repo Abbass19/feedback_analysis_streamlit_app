@@ -32,3 +32,8 @@ requests>=2.32.5
 rich>=14.2.0
 tqdm>=4.67.1
 unicodedata2>=17.0.0
+
+sounddevice~=0.5.3
+scikit-learn~=1.7.2
+numpy~=2.3.4
+setuptools~=80.9.0

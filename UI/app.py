@@ -6,11 +6,11 @@ import pandas as pd
 import whisper
 import tempfile
 from models.ai_api import ai_classifier,ai_ner,ai_stt
-from pydub import AudioSegment
 import unicodedata
 import plotly.graph_objects as go
 from table import FeedbackTableFormatter
-
+import soundfile as sf
+import sounddevice as sd
 
 
 # -------------------------
@@ -83,10 +83,23 @@ def main():
 
                         # Convert & transcribe
                         converted_path = tmpfile_path.replace(".wav", "_converted.wav")
-                        sound = AudioSegment.from_file(tmpfile_path)
-                        sound = sound.set_frame_rate(16000).set_channels(1).set_sample_width(2)
-                        sound.export(converted_path, format="wav")
 
+                        #We Will Comment these lines
+                        # Read original audio
+                        data, samplerate = sf.read(tmpfile_path)
+
+                        # Resample to 16kHz if needed
+                        import resampy
+                        if samplerate != 16000:
+                            data = resampy.resample(data.T, samplerate, 16000).T
+                            samplerate = 16000
+
+                        # Ensure mono
+                        if data.ndim > 1:
+                            data = data.mean(axis=1)
+
+                        # Save converted WAV
+                        sf.write(converted_path, data, samplerate, subtype='PCM_16')
                         # Transcribe
                         st.session_state.feedback_text = ai_stt(converted_path).strip()
                         st.success("Transcription complete!")
